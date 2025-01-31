@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://ckrln0g2ap024"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_axxmu"]
+[ext_resource type="Texture2D" uid="uid://b76otw1vipxs3" path="res://FBAssets/FBsprites/bluebird-downflap.png" id="1_rc4h7"]
+[ext_resource type="Texture2D" uid="uid://ciy4kex72rq2m" path="res://FBAssets/FBsprites/bluebird-midflap.png" id="2_krhwj"]
+[ext_resource type="Texture2D" uid="uid://dcg1nvq7ex14x" path="res://FBAssets/FBsprites/bluebird-upflap.png" id="3_5lpa6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15ljk"]
+atlas = ExtResource("1_rc4h7")
+region = Rect2(0, 0, 34, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u54m"]
+atlas = ExtResource("2_krhwj")
+region = Rect2(0, 0, 34, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uoq4x"]
+atlas = ExtResource("3_5lpa6")
+region = Rect2(0, 0, 34, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_txh5f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15ljk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u54m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uoq4x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m1ucl"]
+radius = 12.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohg8c"]
+size = Vector2(34, 28)
+
+[node name="player" type="RigidBody2D"]
+script = ExtResource("1_axxmu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_txh5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m1ucl")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_ohg8c")
